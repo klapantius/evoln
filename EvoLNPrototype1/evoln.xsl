@@ -79,7 +79,7 @@
             <fo:inline font-weight="bold">
               <xsl:choose>
                 <xsl:when test="$DocType = '1'">
-                  Auftragsbestätigung
+                  Auftragsbestätigung 
                 </xsl:when>
                 <xsl:otherwise>
                   Lieferschein
