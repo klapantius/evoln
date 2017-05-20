@@ -74,16 +74,31 @@
               </fo:table-row>
             </fo:table-body>
           </fo:table>
+          <xsl:variable name="DocType" select="doc/iteration/doctype" />
           <fo:block space-before="1em">
             <fo:inline font-weight="bold">
-              <xsl:value-of select="doc/iteration/doctype"/>
+              <xsl:choose>
+                <xsl:when test="$DocType = '1'">
+                  Auftragsbestätigung
+                </xsl:when>
+                <xsl:otherwise>
+                  Lieferschein
+                </xsl:otherwise>
+              </xsl:choose>
             </fo:inline>
             <fo:inline>
               (IT<xsl:value-of select="doc/iteration/IT"/> von <xsl:value-of select="doc/iteration/itvon"/> bis <xsl:value-of select="doc/iteration/itbis"/>)
             </fo:inline>
           </fo:block>
           <fo:block space-before="1em" space-after="1em">
-            Im Rahmen Ihrer Bestellung <xsl:value-of select="doc/vertrag/vertragsnr"/> und den fachlichen Besprechungen übernehmen wir die folgenden Arbeiten:
+            <xsl:choose>
+              <xsl:when test="$DocType = '1'">
+                Im Rahmen Ihrer Bestellung <xsl:value-of select="doc/vertrag/vertragsnr"/> und den fachlichen Besprechungen übernehmen wir die folgenden Arbeiten:
+              </xsl:when>
+              <xsl:otherwise>
+                Im  Rahmen Ihrer Bestellung <xsl:value-of select="doc/vertrag/vertragsnr"/> und den fachlichen Festlegungen (XXXXXXXXXXX) liefern wir Ihnen folgende Positionen:
+              </xsl:otherwise>
+            </xsl:choose>
           </fo:block>
           <fo:table>
             <fo:table-column border-style="solid" border-width="thin"/>
@@ -103,7 +118,15 @@
                   </fo:table-cell>
                   <fo:table-cell>
                     <fo:block>
-                      <xsl:value-of select="status"/>
+                      <xsl:choose>
+                        <xsl:when test="$DocType = '1'">
+                          <xsl:value-of select="status1"/>
+                        </xsl:when>
+                        <xsl:otherwise>
+                          <xsl:value-of select="status2"/>
+                          <!--<xsl:value-of select="concat('status', $DocType)"/>-->
+                        </xsl:otherwise>
+                      </xsl:choose>
                     </fo:block>
                   </fo:table-cell>
                 </fo:table-row>
