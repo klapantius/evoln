@@ -30,6 +30,8 @@ namespace EvoLNPrototype1
                 Console.ReadKey();
                 return;
             }
+            //Console.WriteLine("\n\nTransformation succeeded. Press a key to see the result.");
+            //Console.ReadKey();
             var viewer = new Process()
             {
                 StartInfo = new ProcessStartInfo()

@@ -10,16 +10,64 @@
   <xsl:template match="/">
     <fo:root>
       <fo:layout-master-set>
-        <fo:simple-page-master master-name="A4" page-width="210mm" page-height="297mm" margin="2cm">
-          <fo:region-body/>
+        <fo:simple-page-master master-name="A4" page-width="210mm" page-height="297mm" margin="2cm" margin-top="1cm" margin-bottom="3cm">
+          <fo:region-body margin-top="2cm"/>
+          <fo:region-before/>
+          <fo:region-after/>
         </fo:simple-page-master>
       </fo:layout-master-set>
       <fo:page-sequence master-reference="A4">
+        <fo:static-content flow-name="xsl-region-before">
+          <fo:block text-align="center">
+            <fo:external-graphic src="evologo.png" scaling="uniform" content-height="2cm"/>
+          </fo:block>
+        </fo:static-content>
+        <fo:static-content flow-name="xsl-region-after" font-size="6px" color="gray">
+          <fo:table>
+            <fo:table-column/>
+            <fo:table-column/>
+            <fo:table-column/>
+            <fo:table-column/>
+            <fo:table-column/>
+            <fo:table-body>
+              <fo:table-row>
+                <fo:table-cell>
+                  <fo:block>evosoft GmbH</fo:block>
+                  <fo:block>Hugo-Junkers-Str. 11</fo:block>
+                  <fo:block>90411 Nürnberg</fo:block>
+                </fo:table-cell>
+                <fo:table-cell>
+                  <fo:block>Tel: +49 911 53991 - 0</fo:block>
+                  <fo:block>Fax: +49 911 53991 - 999</fo:block>
+                  <fo:block>info@evosoft.com         </fo:block>
+                  <fo:block>www.evosoft.com          </fo:block>
+                </fo:table-cell>
+                <fo:table-cell>
+                  <fo:block>Geschäftsführer: </fo:block>
+                  <fo:block>Ekkehard Reuß    </fo:block>
+                  <fo:block>Gernot Kral      </fo:block>
+                  <fo:block>Dr. Rainer Besold</fo:block>
+                </fo:table-cell>
+                <fo:table-cell>
+                  <fo:block>Sitz der Gesellschaft: Nürnberg</fo:block>
+                  <fo:block>Handelsregister: HRB 13657     </fo:block>
+                  <fo:block>Amtsgericht Nürnberg           </fo:block>
+                  <fo:block>USt-IDNr. DE168106284          </fo:block>
+                  <fo:block>St.Nr. 241/115/32725           </fo:block>
+                </fo:table-cell>
+                <fo:table-cell>
+                  <fo:block>Bankverbindung:            </fo:block>
+                  <fo:block>Bayerische HypoVereinsbank AG Erlangen</fo:block>
+                  <fo:block>BLZ  763 200 72 / Konto 3 260 682     </fo:block>
+                  <fo:block>IBAN DE16 7632 0072 0003 2606 82      </fo:block>
+                  <fo:block>SWIFT (BIC) HYVEDEMM417               </fo:block>
+                </fo:table-cell>
+              </fo:table-row>
+            </fo:table-body>
+          </fo:table>
+        </fo:static-content>
         <fo:flow flow-name="xsl-region-body" font-size="11pt">
           <xsl:variable name="DocType" select="doc/iteration/doctype" />
-          <fo:block text-align="center">
-            <fo:external-graphic src="evologo.png" scaling="uniform" content-height="5em"/>
-          </fo:block>
           <fo:block>
             Siemens Healthcare GmbH
           </fo:block>
