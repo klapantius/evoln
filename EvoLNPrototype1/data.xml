@@ -1,31 +1,30 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <doc>
+  <type>2</type>
   <vertrag>
     <abteilung>HC DI SY REL</abteilung>
     <vertragsnr>AB46546546</vertragsnr>
     <contacts>
-      <contact>
+      <siemens>
         <name>Irgendein Productowner</name>
         <role>Product owner</role>
-      </contact>
-      <contact>
+      </siemens>
+      <siemens>
         <name>Anderer Leinmanager</name>
         <role>Auftragssteller</role>
-      </contact>
+      </siemens>
+      <evo>
+        <name>Balazs Juhasz</name>
+        <email>balazs.juhasz@evosoft.com</email>
+      </evo>
     </contacts>
   </vertrag>
-  <head2>
-    <erstelltvom>Balazs Juhasz</erstelltvom>
+  <iteration>
     <auftragsdatum>14.05.2017</auftragsdatum>
     <leistungsdatum>21.05.2017</leistungsdatum>
-  </head2>
-  <iteration>
-    <doctype>1</doctype>
-    <IT>5</IT>
+    <IT>05</IT>
     <itvon>05.05.2017</itvon>
     <itbis>04.06.2017</itbis>
-  </iteration>
-  <positionen>
     <position>
       <id>12345</id>
       <url>http://google.com</url>
@@ -47,5 +46,5 @@
       <status1>created</status1>
       <status2>in work</status2>
     </position>
-  </positionen>
+  </iteration>
 </doc>

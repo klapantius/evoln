@@ -67,7 +67,7 @@
           </fo:table>
         </fo:static-content>
         <fo:flow flow-name="xsl-region-body" font-size="11pt">
-          <xsl:variable name="DocType" select="doc/iteration/doctype" />
+          <xsl:variable name="DocType" select="doc/type" />
           <fo:block>
             Siemens Healthcare GmbH
           </fo:block>
@@ -75,7 +75,7 @@
             <xsl:value-of select="doc/vertrag/abteilung" />
           </fo:block>
           <fo:block>
-            <xsl:for-each select="doc/vertrag/contacts/contact">
+            <xsl:for-each select="doc/vertrag/contacts/siemens">
               <xsl:value-of select="name"/>
               <xsl:if test="position() != last()">, </xsl:if>
             </xsl:for-each>
@@ -91,7 +91,7 @@
                   <fo:block>
                     <fo:inline>Ansprechpartner: </fo:inline>
                     <fo:inline text-align="right">
-                      <xsl:value-of select="doc/head2/erstelltvom"/>
+                      <xsl:value-of select="doc/vertrag/contacts/evo/name"/>
                     </fo:inline>
                   </fo:block>
                 </fo:table-cell>
@@ -99,10 +99,10 @@
                   <fo:block text-align="right">
                     <xsl:choose>
                       <xsl:when test="$DocType = '1'">
-                        Datum: <xsl:value-of select="doc/head2/auftragsdatum"/>
+                        Datum: <xsl:value-of select="doc/iteration/auftragsdatum"/>
                       </xsl:when>
                       <xsl:otherwise>
-                        Datum: <xsl:value-of select="doc/head2/leistungsdatum"/>
+                        Datum: <xsl:value-of select="doc/iteration/leistungsdatum"/>
                       </xsl:otherwise>
                     </xsl:choose>
                   </fo:block>
@@ -111,7 +111,10 @@
             </fo:table-body>
           </fo:table>
           <fo:block>
-            Email:
+            <fo:inline>Email: </fo:inline>
+            <fo:inline text-align="right">
+              <xsl:value-of select="doc/vertrag/contacts/evo/email"/>
+            </fo:inline>
           </fo:block>
           <fo:block space-before="1em">
             <fo:inline font-weight="bold">
@@ -134,7 +137,7 @@
                 Im Rahmen Ihrer Bestellung <xsl:value-of select="doc/vertrag/vertragsnr"/> und den fachlichen Besprechungen übernehmen wir die folgenden Arbeiten:
               </xsl:when>
               <xsl:otherwise>
-                Im  Rahmen Ihrer Bestellung <xsl:value-of select="doc/vertrag/vertragsnr"/> und den fachlichen Festlegungen (XXXXXXXXXXX) liefern wir Ihnen folgende Positionen:
+                Im  Rahmen Ihrer Bestellung <xsl:value-of select="doc/vertrag/vertragsnr"/> und den fachlichen Festlegungen (XXXXXXXXXXX) liefern wir Ihnen folgende iteration:
               </xsl:otherwise>
             </xsl:choose>
           </fo:block>
@@ -150,7 +153,7 @@
               </fo:table-cell>
             </fo:table-header>
             <fo:table-body border-style="solid" border-width="thin">
-              <xsl:for-each select="doc/positionen/position">
+              <xsl:for-each select="doc/iteration/position">
                 <fo:table-row border-style="solid" border-width="thin">
                   <fo:table-cell>
                     <fo:block>
