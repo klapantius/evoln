@@ -16,6 +16,7 @@
       </fo:layout-master-set>
       <fo:page-sequence master-reference="A4">
         <fo:flow flow-name="xsl-region-body" font-size="11pt">
+          <xsl:variable name="DocType" select="doc/iteration/doctype" />
           <fo:table>
             <fo:table-column/>
             <fo:table-column/>
@@ -58,7 +59,14 @@
                 </fo:table-cell>
                 <fo:table-cell>
                   <fo:block>
-                    Datum: <xsl:value-of select="doc/head2/erstelltam"/>
+                    <xsl:choose>
+                      <xsl:when test="$DocType = '1'">
+                        Datum: <xsl:value-of select="doc/head2/auftragsdatum"/>
+                      </xsl:when>
+                      <xsl:otherwise>
+                        Datum: <xsl:value-of select="doc/head2/leistungsdatum"/>
+                      </xsl:otherwise>
+                    </xsl:choose>
                   </fo:block>
                 </fo:table-cell>
               </fo:table-row>
@@ -74,12 +82,11 @@
               </fo:table-row>
             </fo:table-body>
           </fo:table>
-          <xsl:variable name="DocType" select="doc/iteration/doctype" />
           <fo:block space-before="1em">
             <fo:inline font-weight="bold">
               <xsl:choose>
                 <xsl:when test="$DocType = '1'">
-                  Auftragsbestätigung 
+                  Auftragsbestätigung
                 </xsl:when>
                 <xsl:otherwise>
                   Lieferschein
