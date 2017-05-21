@@ -17,16 +17,25 @@
       <fo:page-sequence master-reference="A4">
         <fo:flow flow-name="xsl-region-body" font-size="11pt">
           <xsl:variable name="DocType" select="doc/iteration/doctype" />
-          <fo:table>
-            <fo:table-column/>
-            <fo:table-column/>
-            <fo:table-body border-style="none">
+          <fo:block>
+            Siemens Healthcare GmbH
+          </fo:block>
+          <fo:block>
+            <xsl:value-of select="doc/vertrag/abteilung" />
+          </fo:block>
+          <fo:block>
+            <xsl:for-each select="doc/vertrag/contacts/contact">
+              <xsl:value-of select="name"/>
+              <xsl:if test="position() != last()">, </xsl:if>
+            </xsl:for-each>
+          </fo:block>
+          <fo:block>Siemensstr. 3</fo:block>
+          <fo:block>91301 Forchheim</fo:block>
+          <fo:table space-before="1em">
+            <fo:table-column />
+            <fo:table-column />
+            <fo:table-body>
               <fo:table-row>
-                <fo:table-cell>
-                  <fo:block>
-                    Siemens Healthcare GmbH
-                  </fo:block>
-                </fo:table-cell>
                 <fo:table-cell>
                   <fo:block>
                     <fo:inline>Ansprechpartner: </fo:inline>
@@ -35,30 +44,8 @@
                     </fo:inline>
                   </fo:block>
                 </fo:table-cell>
-              </fo:table-row>
-              <fo:table-row>
                 <fo:table-cell>
-                  <fo:block>
-                    <xsl:value-of select="doc/vertrag/abteilung" />
-                  </fo:block>
-                </fo:table-cell>
-                <fo:table-cell>
-                  <fo:block>
-                    Email:
-                  </fo:block>
-                </fo:table-cell>
-              </fo:table-row>
-              <fo:table-row>
-                <fo:table-cell>
-                  <fo:block>
-                    <xsl:for-each select="doc/vertrag/contacts/contact">
-                      <xsl:value-of select="name"/>
-                      <xsl:if test="position() != last()">, </xsl:if>
-                    </xsl:for-each>
-                  </fo:block>
-                </fo:table-cell>
-                <fo:table-cell>
-                  <fo:block>
+                  <fo:block text-align="right">
                     <xsl:choose>
                       <xsl:when test="$DocType = '1'">
                         Datum: <xsl:value-of select="doc/head2/auftragsdatum"/>
@@ -70,18 +57,11 @@
                   </fo:block>
                 </fo:table-cell>
               </fo:table-row>
-              <fo:table-row>
-                <fo:table-cell>
-                  <fo:block>Siemensstr. 3</fo:block>
-                </fo:table-cell>
-              </fo:table-row>
-              <fo:table-row>
-                <fo:table-cell>
-                  <fo:block>91301 Forchheim</fo:block>
-                </fo:table-cell>
-              </fo:table-row>
             </fo:table-body>
           </fo:table>
+          <fo:block>
+            Email:
+          </fo:block>
           <fo:block space-before="1em">
             <fo:inline font-weight="bold">
               <xsl:choose>
@@ -97,7 +77,7 @@
               (IT<xsl:value-of select="doc/iteration/IT"/> von <xsl:value-of select="doc/iteration/itvon"/> bis <xsl:value-of select="doc/iteration/itbis"/>)
             </fo:inline>
           </fo:block>
-          <fo:block space-before="1em" space-after="1em">
+          <fo:block space-before="1em">
             <xsl:choose>
               <xsl:when test="$DocType = '1'">
                 Im Rahmen Ihrer Bestellung <xsl:value-of select="doc/vertrag/vertragsnr"/> und den fachlichen Besprechungen übernehmen wir die folgenden Arbeiten:
@@ -107,9 +87,17 @@
               </xsl:otherwise>
             </xsl:choose>
           </fo:block>
-          <fo:table>
+          <fo:table space-before="1em">
             <fo:table-column border-style="solid" border-width="thin"/>
             <fo:table-column border-style="solid" border-width="thin"/>
+            <fo:table-header background-color="lightgrey">
+              <fo:table-cell>
+                <fo:block>Aufgabe</fo:block>Aufgabe
+              </fo:table-cell>
+              <fo:table-cell>
+                <fo:block>Status</fo:block>
+              </fo:table-cell>
+            </fo:table-header>
             <fo:table-body border-style="solid" border-width="thin">
               <xsl:for-each select="doc/positionen/position">
                 <fo:table-row border-style="solid" border-width="thin">
