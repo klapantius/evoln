@@ -10,13 +10,16 @@
   <xsl:template match="/">
     <fo:root>
       <fo:layout-master-set>
-        <fo:simple-page-master master-name="A4" page-width="210mm" page-height="297mm" margin="1cm">
+        <fo:simple-page-master master-name="A4" page-width="210mm" page-height="297mm" margin="2cm">
           <fo:region-body/>
         </fo:simple-page-master>
       </fo:layout-master-set>
       <fo:page-sequence master-reference="A4">
         <fo:flow flow-name="xsl-region-body" font-size="11pt">
           <xsl:variable name="DocType" select="doc/iteration/doctype" />
+          <fo:block text-align="center">
+            <fo:external-graphic src="evologo.png" scaling="uniform" content-height="5em"/>
+          </fo:block>
           <fo:block>
             Siemens Healthcare GmbH
           </fo:block>
@@ -89,13 +92,13 @@
           </fo:block>
           <fo:table space-before="1em">
             <fo:table-column border-style="solid" border-width="thin"/>
-            <fo:table-column border-style="solid" border-width="thin"/>
+            <fo:table-column border-style="solid" border-width="thin" column-width="30%"/>
             <fo:table-header background-color="lightgrey">
               <fo:table-cell>
-                <fo:block>Aufgabe</fo:block>Aufgabe
+                <fo:block>Aufgabe</fo:block>
               </fo:table-cell>
               <fo:table-cell>
-                <fo:block>Status</fo:block>
+                <fo:block text-align="center">Status</fo:block>
               </fo:table-cell>
             </fo:table-header>
             <fo:table-body border-style="solid" border-width="thin">
@@ -112,7 +115,7 @@
                     </fo:block>
                   </fo:table-cell>
                   <fo:table-cell>
-                    <fo:block>
+                    <fo:block  text-align="center">
                       <xsl:choose>
                         <xsl:when test="$DocType = '1'">
                           <xsl:value-of select="status1"/>
@@ -128,6 +131,7 @@
               </xsl:for-each>
             </fo:table-body>
           </fo:table>
+          <fo:block space-before="1em">Bestätigt durch:</fo:block>
         </fo:flow>
       </fo:page-sequence>
     </fo:root>
